@@ -1,16 +1,23 @@
-import { NestFactory } from '@nestjs/core';
+import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
+import { ResponseInterceptor } from './core/response.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api/v1');
+  app.enableCors({ origin: '*' });
 
+  const moduleRef = app.select(AppModule);
+  const reflector = moduleRef.get(Reflector);
+  app.useGlobalInterceptors(new ResponseInterceptor(reflector));
+  app.useGlobalFilters()
+    
   // Configurar títulos de documnentación
   const options = new DocumentBuilder() 
     // .addBearerAuth()
-    .setTitle('ApiGatewat-Example')
+    .setTitle('ApiGatewat')
     .setDescription('Example')
     .setVersion('1.0')
     .build();
@@ -20,12 +27,9 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
   app.useGlobalPipes(new ValidationPipe({
     transform: true,
-    transformOptions:{
-      enableImplicitConversion: true
-    }
-  }))
-  app.enableCors();
+    whitelist: true
+  }));  
+  //app.enableCors();
   await app.listen(3000);
 }
 bootstrap();
-
