@@ -4,9 +4,10 @@ import { AppService } from './app.service';
 import { APP_FILTER } from '@nestjs/core';
 import { AllExceptionsFilter } from './core/exception.interceptor';
 import { PkComerLcModule } from './modules/pk-comer-lc/pk-comer-lc.module';
+import { LcsExtemporaneousModule } from './modules/lcs-extemporaneous/lcs-extemporaneous.module';
 
 @Module({
-  imports: [PkComerLcModule],
+  imports: [PkComerLcModule, LcsExtemporaneousModule],
   controllers: [AppController],
   providers: [{ provide: APP_FILTER, useClass: AllExceptionsFilter },AppService]
 })
