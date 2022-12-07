@@ -4,6 +4,7 @@ import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { LcsExtemporaneousService } from './lcs-extemporaneous.service';
 import { addDayDto } from './dto/add-day.dto';
 import { GetStatusDto } from './dto/get-status.dto';
+import { GetCountLCDto } from './dto/get-count-lc.dto';
 
 @Controller('lcs-extemporaneous')
 @ApiTags('lcs-extemporaneous')
@@ -22,5 +23,12 @@ export class LcsExtemporaneousController {
   @Post('get-status-lc')
   async getStatusLC(@Body() data: GetStatusDto) {
     return this.service.getStatusLC(data);
+  }
+
+  @ApiOperation({ summary: 'FA_OBTIENE_COUNT_LC' })
+  @ApiBody({ type: GetCountLCDto })
+  @Post('get-count-lc')
+  async getCountLC(@Body() data: GetCountLCDto) {
+    return await this.service.getCountLC(data);
   }
 }
