@@ -25,10 +25,17 @@ async function bootstrap() {
 
   // La ruta en que se sirve la documentación
   SwaggerModule.setup('api', app, document);
-  app.useGlobalPipes(new ValidationPipe({
-    transform: true,
-    whitelist: true
-  }));  
+
+  app.enableCors();
+  
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+      transformOptions: {
+        enableImplicitConversion: true,
+      },
+    })
+  );
   //app.enableCors();
   await app.listen(3000);
 }
