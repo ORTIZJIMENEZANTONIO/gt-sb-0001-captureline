@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Post, Put } from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 import { LcsExtemporaneousService } from './lcs-extemporaneous.service';
@@ -7,6 +7,7 @@ import { GetStatusDto } from './dto/get-status.dto';
 import { GetCountLCDto } from './dto/get-count-lc.dto';
 import { GetValidityDateDto } from './dto/get-validity-date.dto';
 import { UpdateLCDto } from './dto/update-lc.dto';
+import { CancelLCDto } from './dto/cancel-lc.dto';
 
 @Controller('lcs-extemporaneous')
 @ApiTags('lcs-extemporaneous')
@@ -41,10 +42,17 @@ export class LcsExtemporaneousController {
     return await this.service.getValidityDate(data);
   }
 
-  @ApiOperation({ summary: 'FA_OBTIENE_FEC_VIGENCIA' })
+  @ApiOperation({ summary: 'PA_ACTALIZA_LC' })
   @ApiBody({ type: UpdateLCDto })
   @Put('update-lc')
   async updateLC(@Body() data: UpdateLCDto) {
     return await this.service.updateLC(data);
+  }
+
+  @ApiOperation({ summary: 'PA_CANCELA_LC' })
+  @ApiBody({ type: CancelLCDto })
+  @Delete('cancel-lc')
+  async cancelLC(@Body() data: CancelLCDto) {
+    return await this.service.cancelLC(data);
   }
 }
