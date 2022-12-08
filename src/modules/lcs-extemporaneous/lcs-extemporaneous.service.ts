@@ -42,4 +42,9 @@ export class LcsExtemporaneousService {
     const pattern = { cmd: 'cancelLC' };
     return await this.client.send(pattern, data);
   }
+
+  async generateLCS() {
+    const pattern = { cmd: 'generateLCS' };
+    return this.client.send(pattern, '');
+  }
 }

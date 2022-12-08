@@ -55,4 +55,11 @@ export class LcsExtemporaneousController {
   async cancelLC(@Body() data: CancelLCDto) {
     return await this.service.cancelLC(data);
   }
+
+  @ApiOperation({ summary: 'PA_GENERA_LCS' })
+  @ApiBody({ type: GetValidityDateDto })
+  @Post('generate-lcs')
+  async generateLCS(@Body() data: GetValidityDateDto) {
+    return await this.service.generateLCS();
+  }
 }
