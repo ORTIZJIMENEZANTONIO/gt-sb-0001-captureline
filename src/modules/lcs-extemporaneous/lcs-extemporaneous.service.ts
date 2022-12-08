@@ -3,6 +3,8 @@ import { ClientProxy } from '@nestjs/microservices';
 import { addDayDto } from './dto/add-day.dto';
 import { GetCountLCDto } from './dto/get-count-lc.dto';
 import { GetStatusDto } from './dto/get-status.dto';
+import { GetValidityDateDto } from './dto/get-validity-date.dto';
+import { UpdateLCDto } from './dto/update-lc.dto';
 
 @Injectable()
 export class LcsExtemporaneousService {
@@ -23,5 +25,15 @@ export class LcsExtemporaneousService {
   async getCountLC(data: GetCountLCDto) {
     const pattern = { cmd: 'getCountLC' };
     return await this.client.send(pattern, data);
+  }
+
+  async getValidityDate(data: GetValidityDateDto) {
+    const pattern = { cmd: 'getValidityDate' };
+    return await this.client.send(pattern, data);
+  }
+
+  async updateLC(data: UpdateLCDto) {
+    const pattern = { cmd: 'updateLC' };
+    return this.client.send(pattern, data);
   }
 }
