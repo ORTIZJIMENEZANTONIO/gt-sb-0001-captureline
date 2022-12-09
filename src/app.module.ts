@@ -9,6 +9,9 @@ import { LcsExtemporaneousModule } from './modules/lcs-extemporaneous/lcs-extemp
 @Module({
   imports: [PkComerLcModule, LcsExtemporaneousModule],
   controllers: [AppController],
-  providers: [{ provide: APP_FILTER, useClass: AllExceptionsFilter },AppService]
+  providers: [
+    AppService,
+    { provide: APP_FILTER, useClass: AllExceptionsFilter },
+  ],
 })
 export class AppModule {}
