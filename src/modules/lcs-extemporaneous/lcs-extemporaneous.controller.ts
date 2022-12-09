@@ -8,6 +8,7 @@ import { GetCountLCDto } from './dto/get-count-lc.dto';
 import { GetValidityDateDto } from './dto/get-validity-date.dto';
 import { UpdateLCDto } from './dto/update-lc.dto';
 import { CancelLCDto } from './dto/cancel-lc.dto';
+import { GenerateLCSDto } from './dto/generate-lcs.dto';
 
 @Controller('lcs-extemporaneous')
 @ApiTags('lcs-extemporaneous')
@@ -57,9 +58,9 @@ export class LcsExtemporaneousController {
   }
 
   @ApiOperation({ summary: 'PA_GENERA_LCS' })
-  @ApiBody({ type: GetValidityDateDto })
+  @ApiBody({ type: GenerateLCSDto })
   @Post('generate-lcs')
-  async generateLCS(@Body() data: GetValidityDateDto) {
-    return await this.service.generateLCS();
+  async generateLCS(@Body() data: GenerateLCSDto) {
+    return await this.service.generateLCS(data);
   }
 }

@@ -2,6 +2,7 @@ import { Injectable, Inject } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { addDayDto } from './dto/add-day.dto';
 import { CancelLCDto } from './dto/cancel-lc.dto';
+import { GenerateLCSDto } from './dto/generate-lcs.dto';
 import { GetCountLCDto } from './dto/get-count-lc.dto';
 import { GetStatusDto } from './dto/get-status.dto';
 import { GetValidityDateDto } from './dto/get-validity-date.dto';
@@ -43,8 +44,8 @@ export class LcsExtemporaneousService {
     return await this.client.send(pattern, data);
   }
 
-  async generateLCS() {
+  async generateLCS(data: GenerateLCSDto) {
     const pattern = { cmd: 'generateLCS' };
-    return this.client.send(pattern, '');
+    return this.client.send(pattern, data);
   }
 }
