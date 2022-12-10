@@ -5,7 +5,7 @@ import {
 import { Message } from "src/shared/message";
 import { Type } from 'class-transformer';
 
-export class SpGenRgDto {
+export class SpGenRg2Dto {
     //-----------------------------------------------------------------------------------------------------------------
     @IsNumber({}, { message: Message.NUMBER('$property') })
     @IsInt({ message: Message.ISINT('$property') })

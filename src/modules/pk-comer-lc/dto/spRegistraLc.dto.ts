@@ -7,31 +7,81 @@ import { Message } from "src/shared/message";
 
 export class SpRegistraLcDto {
     //-----------------------------------------------------------------------------------------------------------------
-    P_MONTO: string
+    @IsNumber({}, { message: Message.NUMBER('$property') })
+    @Max(999999999999, { message: Message.MAX('$property', '$constraint1') })
+    @ApiProperty({ example: 'INDICADOR DE MONTO' })
+    P_MONTO: number
     //-----------------------------------------------------------------------------------------------------------------
+    @IsString({ message: Message.STRING('$property') })
+    @ApiProperty({ example: 'INDICADOR DE ESTATUS DE LC' })
     P_ESTATUS: string
     //-----------------------------------------------------------------------------------------------------------------
-    P_PALETA: string
+    @IsNumber({}, { message: Message.NUMBER('$property') })
+    @ApiProperty({ example: 'INDICADORE DE PALETA' })
+    P_PALETA: number
     //-----------------------------------------------------------------------------------------------------------------
-    P_TIPO_REF: string
+    @IsNumber({}, { message: Message.NUMBER('$property') })
+    @IsInt({ message: Message.ISINT('$property') })
+    @Max(9999999999, { message: Message.MAX('$property', '$constraint1') })
+    @ApiProperty({ example: 'INDICADOR DE TIPO DE REFERENCIA' })
+    P_TIPO_REF: number
     //-----------------------------------------------------------------------------------------------------------------
-    P_FECHA_REG: number
+    @Type(() => Date)
+    @IsDate({ message: Message.ISDATE('$property') })
+    @ApiProperty({ example: 'INDICADOR DE FECHA DE REGISTRO' })
+    P_FECHA_REG: Date
     //-----------------------------------------------------------------------------------------------------------------
+    @IsString({ message: Message.STRING('$property') })
+    @MaxLength(40, { message: Message.MAXLENGTH('$property', '$constraint1') })
+    @ApiProperty({ example: 'INDICADOR DE LC_SAE  CONFORMADA POR VALORES DE SAE ( TIPO_LC , ID_EVENTO Y ID_LOTE)' })
     P_LC_SAE: string
     //-----------------------------------------------------------------------------------------------------------------
+    @IsString({ message: Message.STRING('$property') })
+    @MaxLength(40, { message: Message.MAXLENGTH('$property', '$constraint1') })
+    @ApiProperty({ example: 'INDICADOR DE LC_BANCO CONFORMADA POR VALORES DEL  BANCO ( FECHA_VIGECIA, LC_SAE Y MONTO)' })
     P_LC_BANCO: string
     //-----------------------------------------------------------------------------------------------------------------
-    P_TIPO_PAGO: string
+    @IsNumber({}, { message: Message.NUMBER('$property') })
+    @IsInt({ message: Message.ISINT('$property') })
+    @Max(9999999999, { message: Message.MAX('$property', '$constraint1') })
+    @ApiProperty({ example: 'INDICADOR DE TIPO DE PAGO' })
+    P_TIPO_PAGO: number
     //-----------------------------------------------------------------------------------------------------------------
+    @IsString({ message: Message.STRING('$property') })
+    @MaxLength(20, { message: Message.MAXLENGTH('$property', '$constraint1') })
+    @ApiProperty({ example: 'INDICADOR DE USUARIO QUE GENERA LC' })
     P_USER_GENERA: string
     //-----------------------------------------------------------------------------------------------------------------
-    P_FEC_VIGENCIA: string
+    @Type(() => Date)
+    @IsDate({ message: Message.ISDATE('$property') })
+    @ApiProperty({ example: 'INDICADOR DE FECHA DE VIGENCIA' })
+    P_FEC_VIGENCIA: Date
     //-----------------------------------------------------------------------------------------------------------------
-    P_MONTO_PENA: string
+    @IsNumber({}, { message: Message.NUMBER('$property') })
+    @Max(999999999999, { message: Message.MAX('$property', '$constraint1') })
+    @ApiProperty({ example: 'INDICADOR DE MONTO PENA PARA EL CASO DE LC CON PAGO EXTEMPORANEO' })
+    P_MONTO_PENA: number
     //-----------------------------------------------------------------------------------------------------------------
-    P_IDEVENTO: string
+    @IsNumber({}, { message: Message.NUMBER('$property') })
+    @IsInt({ message: Message.ISINT('$property') })
+    @Max(9999999, { message: Message.MAX('$property', '$constraint1') })
+    @ApiProperty({ example: 'INDICADOR DEL ID_EVENTO' })
+    P_IDEVENTO: number
     //-----------------------------------------------------------------------------------------------------------------
-    P_IDLOTE: string
+    @IsNumber({}, { message: Message.NUMBER('$property') })
+    @IsInt({ message: Message.ISINT('$property') })
+    @Max(9999999999, { message: Message.MAX('$property', '$constraint1') })
+    @ApiProperty({ example: 'INDICADOR DEL ID_LOTE' })
+    P_IDLOTE: number
     //-----------------------------------------------------------------------------------------------------------------
-    P_IDCLIENTE: string
+    @IsNumber({}, { message: Message.NUMBER('$property') })
+    @IsInt({ message: Message.ISINT('$property') })
+    @Max(9999999, { message: Message.MAX('$property', '$constraint1') })
+    @ApiProperty({ example: 'INDICADOR DE ID_CLIENTE' })
+    P_IDCLIENTE: number
+    //-----------------------------------------------------------------------------------------------------------------
+    @IsString({ message: Message.STRING('$property') })
+    @ApiProperty({ example: 'MENSAJE RESULTANTE DEL PROCESO.' })
+    p_RESUL: string
+    //-----------------------------------------------------------------------------------------------------------------
 }

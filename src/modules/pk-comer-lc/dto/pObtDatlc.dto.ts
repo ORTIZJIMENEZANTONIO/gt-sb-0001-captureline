@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import {
-    IsString, MaxLength, IsNumber
+    IsString, MaxLength, IsNumber, IsInt, Max
 } from 'class-validator';
 import { Message } from "src/shared/message";
 
@@ -11,9 +11,11 @@ export class PObtDatlcDto {
     @ApiProperty({ example: 'IDENTIFICADOR DEL PARÁMETRO.' })
     p_PARAMETRO: string
     //-----------------------------------------------------------------------------------------------------------------
-    @IsString({ message: Message.STRING('$property') })
+    @IsNumber({}, { message: Message.NUMBER('$property') })
+    @IsInt({ message: Message.ISINT('$property') })
+    @Max(99, { message: Message.MAX('$property', '$constraint1') })
     @ApiProperty({ example: 'IDENTIFICADOR DEL TIPO DE EVENTO.' })
-    p_ID_TPEVENTO: string
+    p_ID_TPEVENTO: number
     //-----------------------------------------------------------------------------------------------------------------
     @IsString({ message: Message.STRING('$property') })
     @ApiProperty({ example: 'DIRECCIÓN DEL EVENTO M MUEBLES, I INMUEBLES. ' })
