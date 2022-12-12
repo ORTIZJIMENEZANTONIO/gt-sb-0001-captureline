@@ -7,6 +7,8 @@ import { Message } from "src/shared/message";
 
 export class PGenAvisoVenLcsDto {
     //-----------------------------------------------------------------------------------------------------------------
+    @IsString({ message: Message.STRING('$property') })
+    @ApiProperty({ example: 'MENSAJE RESULTANTE DEL PROCESO' })
     p_RESUL: string
     //-----------------------------------------------------------------------------------------------------------------
 }
