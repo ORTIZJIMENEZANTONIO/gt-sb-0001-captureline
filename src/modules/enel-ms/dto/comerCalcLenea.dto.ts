@@ -5,10 +5,13 @@ import {
 } from 'class-validator';
 import { Message } from "src/shared/message";
 
-export class PGenAvisoVenLcsDto {
+export class ComerCalcLeneaDto {
+    //-----------------------------------------------------------------------------------------------------------------
+    @IsNumber({}, { message: Message.NUMBER('$property') })
+    @ApiProperty({ example: 'MENSAJE RESULTANTE DEL PROCESO' })
+    PEVENTO: number
     //-----------------------------------------------------------------------------------------------------------------
     @IsString({ message: Message.STRING('$property') })
     @ApiProperty({ example: 'MENSAJE RESULTANTE DEL PROCESO' })
-    p_RESUL: string
-    //-----------------------------------------------------------------------------------------------------------------
+    PCLIENTEBMX: string
 }

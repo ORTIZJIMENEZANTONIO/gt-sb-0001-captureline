@@ -7,6 +7,8 @@ import { SpRegistraLcDto } from './dto/spRegistraLc.dto';
 import { SpGenRgDto } from './dto/spGenRg.dto';
 import { SpRegistraRgsDto } from './dto/spRegistraRgs.dto';
 import { PGenAvisoVenLcsDto } from './dto/pGenAvisoVenLcs.dto';
+import { SpGenLc2Dto } from './dto/spGenLc2.dto';
+import { SpGenRg2Dto } from './dto/spGenRg2.dto';
 
 @Controller('pk-comer-lc')
 @ApiTags('pk-comer-lc')
@@ -27,6 +29,13 @@ export class PkComerLcController {
         return this.service.spGenLc(dataBody)
     }
     //---------------------------------------------------------------------------------------------
+    @ApiOperation({ summary: 'sp-gen-lc2' })
+    @ApiBody({ type: SpGenLc2Dto })
+    @Post('sp-gen-lc2')
+    async spGenLc2(@Body() dataBody: SpGenLc2Dto) {
+        return this.service.spGenLc2(dataBody)
+    }
+    //---------------------------------------------------------------------------------------------
     @ApiOperation({ summary: 'sp-registra-lc' })
     @ApiBody({ type: SpRegistraLcDto })
     @Post('sp-registra-lc')
@@ -39,6 +48,13 @@ export class PkComerLcController {
     @Post('sp-gen-rg')
     async spGenRg(@Body() dataBody: SpGenRgDto) {
         return this.service.spGenRg(dataBody)
+    }
+    //---------------------------------------------------------------------------------------------
+    @ApiOperation({ summary: 'sp-gen-rg2' })
+    @ApiBody({ type: SpGenRgDto })
+    @Post('sp-gen-rg2')
+    async spGenRg2(@Body() dataBody: SpGenRg2Dto) {
+        return this.service.spGenRg2(dataBody)
     }
     //---------------------------------------------------------------------------------------------
     @ApiOperation({ summary: 'sp-registra-rgs' })

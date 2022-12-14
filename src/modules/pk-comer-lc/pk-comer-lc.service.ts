@@ -6,6 +6,8 @@ import { SpRegistraLcDto } from './dto/spRegistraLc.dto';
 import { SpGenRgDto } from './dto/spGenRg.dto';
 import { SpRegistraRgsDto } from './dto/spRegistraRgs.dto';
 import { PGenAvisoVenLcsDto } from './dto/pGenAvisoVenLcs.dto';
+import { SpGenLc2Dto } from './dto/spGenLc2.dto';
+import { SpGenRg2Dto } from './dto/spGenRg2.dto';
 
 @Injectable()
 export class PkComerLcService {
@@ -21,6 +23,11 @@ export class PkComerLcService {
         return this.client.send(pattern, dataBody);
     }
     //---------------------------------------------------------------------------------------------
+    async spGenLc2(dataBody: SpGenLc2Dto) {
+        const pattern = { cmd: 'spGenLc2' };
+        return this.client.send(pattern, dataBody);
+    }
+    //---------------------------------------------------------------------------------------------
     async spRegistraLc(dataBody: SpRegistraLcDto) {
         const pattern = { cmd: 'spRegistraLc' };
         return this.client.send(pattern, dataBody);
@@ -28,6 +35,11 @@ export class PkComerLcService {
     //---------------------------------------------------------------------------------------------
     async spGenRg(dataBody: SpGenRgDto) {
         const pattern = { cmd: 'spGenRg' };
+        return this.client.send(pattern, dataBody);
+    }
+    //---------------------------------------------------------------------------------------------
+    async spGenRg2(dataBody: SpGenRg2Dto) {
+        const pattern = { cmd: 'spGenRg2' };
         return this.client.send(pattern, dataBody);
     }
     //---------------------------------------------------------------------------------------------

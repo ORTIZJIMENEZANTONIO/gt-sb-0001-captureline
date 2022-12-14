@@ -1,52 +1,46 @@
 import { ApiProperty } from "@nestjs/swagger";
+import { Type } from "class-transformer";
 import {
-    IsString, MaxLength, IsNumber, Max, IsInt, IsDate
+    IsString, MaxLength, IsDate, IsNumber, Max, IsInt
 } from 'class-validator';
 import { Message } from "src/shared/message";
-import { Type } from 'class-transformer';
 
-export class SpGenRgDto {
+export class SpGenLc2Dto {
     //-----------------------------------------------------------------------------------------------------------------
     @IsNumber({}, { message: Message.NUMBER('$property') })
     @IsInt({ message: Message.ISINT('$property') })
     @Max(9999999999, { message: Message.MAX('$property', '$constraint1') })
-    @ApiProperty({ example: 'INDICADOR DEL ID_LOTE' })
+    @ApiProperty({ example: 'INDENTIFICADOR DEL ID_LOTE' })
     P_ID_LOTE: number
     //-----------------------------------------------------------------------------------------------------------------
     @IsNumber({}, { message: Message.NUMBER('$property') })
     @IsInt({ message: Message.ISINT('$property') })
     @Max(9999999, { message: Message.MAX('$property', '$constraint1') })
-    @ApiProperty({ example: 'INDICADOR DE ID_CLIENTE' })
+    @ApiProperty({ example: 'INDENTIFICADOR DEL ID_CLIENTE' })
     P_ID_CLIENTE: number
     //-----------------------------------------------------------------------------------------------------------------
     @IsString({ message: Message.STRING('$property') })
     @MaxLength(20, { message: Message.MAXLENGTH('$property', '$constraint1') })
-    @ApiProperty({ example: 'INDICADOR DE PARAMETRO PARA GENERAR LC' })
+    @ApiProperty({ example: 'IDENTIFICADOR DEL PARAMETRO DE TIPO DE LC' })
     P_PARAMETRO: string
     //-----------------------------------------------------------------------------------------------------------------
     @IsNumber({}, { message: Message.NUMBER('$property') })
-    @ApiProperty({ example: 'INDICDOR DE MONTO' })
+    @Max(99999999999999999999, { message: Message.MAX('$property', '$constraint1') })
+    @ApiProperty({ example: 'IDENTIFICADOR DE MONTO DE LC PARA EL CASO LAS QUE SE GENEREN POR EL PORTAL (PAGO PARCIAL)' })
     P_MONTO: number
     //-----------------------------------------------------------------------------------------------------------------
     @IsString({ message: Message.STRING('$property') })
-    @ApiProperty({ example: 'INDICADOR DE MOVIMIENTO' })
+    @MaxLength(20, { message: Message.MAXLENGTH('$property', '$constraint1') })
+    @ApiProperty({ example: 'IDENTIFICADOR DE MOVIMIENTO  CHEQUE O TRANSFERENCIA' })
     P_IND_MOV: string
     //-----------------------------------------------------------------------------------------------------------------
     @Type(() => Date)
     @IsDate({ message: Message.ISDATE('$property') })
-    @ApiProperty({ example: 'INDICADOR DE FECHA DE VIGENCIA' })
-    P_FECVIGENCIA: string
+    @ApiProperty({ example: 'IDENTIFICADOR DE FECHA PARA EL CASO DE LOS PAGOS  PARCIALES' })
+    P_FECVIGENCIA: Date
     //-----------------------------------------------------------------------------------------------------------------
     @IsNumber({}, { message: Message.NUMBER('$property') })
-    @ApiProperty({ example: 'INDICADOR DE NUMERO DE CHEQUE' })
-    P_NO_CHEQUE: number
-    //-----------------------------------------------------------------------------------------------------------------
-    @IsString({ message: Message.STRING('$property') })
-    @ApiProperty({ example: 'INDICADOR DEL BANCO QUE EXPIDE CHEQUE' })
-    P_EXC_CHEQUE: string
-    //-----------------------------------------------------------------------------------------------------------------
-    @IsNumber({}, { message: Message.NUMBER('$property') })
-    @ApiProperty({ example: 'INDICADOR DE NUMERO DE PALETA' })
-    P_NO_PLAETA: number
-    //-----------------------------------------------------------------------------------------------------------------
+    @ApiProperty({ example: 'IDENTIFICADOR DE MONTO DE PENALIZACIÓN' })
+    P_MONTO_PENA: number
 }
+

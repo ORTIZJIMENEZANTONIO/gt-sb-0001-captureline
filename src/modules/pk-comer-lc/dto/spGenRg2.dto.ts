@@ -5,7 +5,7 @@ import {
 import { Message } from "src/shared/message";
 import { Type } from 'class-transformer';
 
-export class SpGenRgDto {
+export class SpGenRg2Dto {
     //-----------------------------------------------------------------------------------------------------------------
     @IsNumber({}, { message: Message.NUMBER('$property') })
     @IsInt({ message: Message.ISINT('$property') })
@@ -49,4 +49,7 @@ export class SpGenRgDto {
     @ApiProperty({ example: 'INDICADOR DE NUMERO DE PALETA' })
     P_NO_PLAETA: number
     //-----------------------------------------------------------------------------------------------------------------
+    @IsString({ message: Message.STRING('$property') })
+    @ApiProperty({ example: 'REFERENCIA GENERADA (SALIDA)' })
+    P_REFERENCIA: string
 }

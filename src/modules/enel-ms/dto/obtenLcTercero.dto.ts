@@ -5,10 +5,17 @@ import {
 } from 'class-validator';
 import { Message } from "src/shared/message";
 
-export class PGenAvisoVenLcsDto {
+export class ObtenLcTerceroDto {
+    //-----------------------------------------------------------------------------------------------------------------
+    @IsNumber({}, { message: Message.NUMBER('$property') })
+    @ApiProperty({ example: 'MENSAJE RESULTANTE DEL PROCESO' })
+    ID_EVENTO_IN: number
     //-----------------------------------------------------------------------------------------------------------------
     @IsString({ message: Message.STRING('$property') })
     @ApiProperty({ example: 'MENSAJE RESULTANTE DEL PROCESO' })
-    p_RESUL: string
+    CVE_PROCESO_IN: string
     //-----------------------------------------------------------------------------------------------------------------
+    @IsString({ message: Message.STRING('$property') })
+    @ApiProperty({ example: 'MENSAJE RESULTANTE DEL PROCESO' })
+    SALIDA_OUT: string
 }

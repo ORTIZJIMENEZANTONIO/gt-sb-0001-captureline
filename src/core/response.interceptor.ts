@@ -33,14 +33,6 @@ const statusMessages = {
   505: 'HTTP Version Not Supported',
   511: 'Network Authentication Required',  
 };
-
-// const methods = {
-//   "PUT":"Actualizado Corectamente",
-//   "GET":"Encontrado Corectamente",
-//   "POST":"Creado Corectamente",
-//   "DELETE":"Eliminado Corectamente"
-// }
-
 @Injectable()
 export class ResponseInterceptor implements NestInterceptor {
   public constructor(private readonly reflector: Reflector) {}
@@ -51,19 +43,16 @@ export class ResponseInterceptor implements NestInterceptor {
   ): Promise<any> {
     const body = await firstValueFrom(next.handle()) ?? null;
     const request = context.switchToHttp().getRequest<Request>();
-    const status =
+    let status =
       this.reflector.get<number>('__httpCode__', context.getHandler()) ||
       (request.method === 'POST' ? 201 : 200);
-    // return of({
-    //   statusCode: status,
-    //   message: methods[request.method],
-    //   data: body,
-    // });
+      
+    const count = body.count
     return of({
-      statusCode: body.statusCode,
-      message: body.message,
-      data: body.data,
-      count: body.count
+      statusCode: status,
+      message: statusMessages[status],
+      ...count?{count:count}:null,
+      data: body.data??body,
     });
   }
 }
